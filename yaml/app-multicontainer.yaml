@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-app-multicontainer
+spec:
+  volumes:
+    - name: demo-app-volume
+      emptyDir: {}
+
+  containers:
+    - name: demo-app
+      image: ngana0/demo-app:v1.0.0
+      #ports:
+      #  - containerPort: 8080
+      volumeMounts:
+        - name: demo-app-volume
+          mountPath: /data
+
+    - name: demo-app-v2
+      image: ngana0/demo-app:v2.0.0
+      #ports:
+      #  - containerPort: 8080
+      volumeMounts:
+        - name: demo-app-volume
+          mountPath: /data
